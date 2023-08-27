@@ -6,6 +6,6 @@ var logSchema = mongoose.Schema({
     process: [{}]
 });
 
-var Log = mongoose.model("Log", logSchema, 'log');
+var Log = mongoose.model("Log", logSchema, 'log_analyzation');
 
 module.exports = Log;
