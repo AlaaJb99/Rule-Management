@@ -9,8 +9,8 @@ exports.initScheduledJobs = () => {
         //Our logic check if there are new files collection in DB
         //untill make the check according to the name of the collections 
         //the file collection begins with file_<file_name>
+        // Start Here =>
         
-
         
     });
 
