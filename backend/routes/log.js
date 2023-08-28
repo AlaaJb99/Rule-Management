@@ -6,7 +6,7 @@ var Log = require('../modules/logDB');
 
 router.get('/', function (req, res) {
     // get all the Logs from the log 
-    Rule.find({}, function (err, Logs) {
+    Log.find({}, function (err, Logs) {
         if (err) {
 
             return res.status(500).json({ error: "An error occurred while fetching rules." });
