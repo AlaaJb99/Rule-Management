@@ -1,11 +1,11 @@
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://127.0.0.1:27017/logAnalyzer');
 
-var logSchema = mongoose.Schema({
+var ruleSchema = mongoose.Schema({
     rule_name: String,
     keywords :[]
 });
 
-var Log = mongoose.model("Rule", logSchema, 'rules');
+var Rule = mongoose.model("Rule", ruleSchema, 'rules');
 
-module.exports = Log;
+module.exports = Rule;
