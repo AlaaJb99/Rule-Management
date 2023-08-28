@@ -3,6 +3,8 @@ mongoose.connect('mongodb://127.0.0.1:27017/logAnalyzer');
 
 var logSchema = mongoose.Schema({
     file_name: String,
+    user_name:String,
+    file_date: Date,
     process: [{}]
 });
 

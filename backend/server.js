@@ -11,7 +11,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(upload.array());
 
 
-var log = require('./routes/log');
+var log = require('./routes/log.js');
 app.use('/log', log);
+
+var rule = require('./routes/rule.js');
+app.use('/rule', rule);
 
 app.listen(8080);
