@@ -1,13 +1,18 @@
 var express = require('express');
 var router = express.Router();
 
-var Log = require('../models/logDB');
-
+var Log = require('../modules/logDB');
 
 
 router.get('/', function (req, res) {
-    Log.find({}).then(function (obj) {
-        console.log(obj);
-        res.json(obj);
+    // get all the Logs from the log 
+    Rule.find({}, function (err, Logs) {
+        if (err) {
+
+            return res.status(500).json({ error: "An error occurred while fetching rules." });
+        }
+        res.json(rules); // return the rules in json formate 
     });
 });
+
+module.exports = router;
