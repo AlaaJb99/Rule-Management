@@ -6,6 +6,6 @@ var logSchema = mongoose.Schema({
     keywords :[]
 });
 
-var Log = mongoose.model("Rule", logSchema, 'log_analyzation');
+var Log = mongoose.model("Rule", logSchema, 'rules');
 
 module.exports = Log;
