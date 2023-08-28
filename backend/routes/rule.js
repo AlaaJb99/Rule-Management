@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var Rule = require('../modules/rulesDB.js');
+var Rule = require('../modules/rulesDB');
 
 router.get('/rules', function (req, res) {
     // get all the rules from the rules collection in the data base 
