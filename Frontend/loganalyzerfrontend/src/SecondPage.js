@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import MultiSelect from './MultiSelect'; // Assuming you have a MultiSelect component
+import MultiSelect from './MainPage'; // Assuming you have a MultiSelect component
 
 function SecondPage() {
 const [selectedValues, setSelectedValues] = useState([]);
