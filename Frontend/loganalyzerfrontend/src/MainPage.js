@@ -31,19 +31,19 @@ function MultiSelect() {
     { value: 'a', label: 'Document A' },
     { value: 'b', label: 'Document B' },
     { value: 'c', label: 'Document C' },
-    // Add more document options as needed
+    
   ];
 
   const [selectedRules, setSelectedRules] = useState([]);
-  const [selectedDocuments, setSelectedDocuments] = useState([]);
+  const [selectedDocument, setSelectedDocument] = useState(null); 
   const [isLoading, setIsLoading] = useState(false);
 
   const handleRuleSelectChange = (selectedRules) => {
     setSelectedRules(selectedRules);
   };
 
-  const handleDocumentSelectChange = (selectedDocuments) => {
-    setSelectedDocuments(selectedDocuments);
+  const handleDocumentSelectChange = (selectedOption) => {
+    setSelectedDocument(selectedOption); // Set the selected document
   };
 
   const handleSubmit = () => {
@@ -52,8 +52,8 @@ function MultiSelect() {
       return;
     }
 
-    if (selectedDocuments.length === 0) {
-      alert('You should choose at least one document');
+    if (!selectedDocument) {
+      alert('Please choose a document');
       return;
     }
 
@@ -61,7 +61,7 @@ function MultiSelect() {
 
     const dataToSend = {
       selectedRules: selectedRules.map((option) => option.value),
-      selectedDocuments: selectedDocuments.map((option) => option.value),
+      selectedDocument: selectedDocument.value, // Use the selected document value
     };
 
     setTimeout(() => {
@@ -72,12 +72,12 @@ function MultiSelect() {
 
   const handleCancel = () => {
     setSelectedRules([]);
-    setSelectedDocuments([]);
+    setSelectedDocument(null); // Reset selected document
   };
 
   return (
     <div>
-      <h1>Select Rules and Documents</h1>
+      <h1>Select Rules and Document</h1>
       <div>
         <label>Rules:</label>
         <Select
@@ -88,11 +88,10 @@ function MultiSelect() {
         />
       </div>
       <div>
-        <label>Documents:</label>
+        <label>Document:</label>
         <Select
-          isMulti
           options={documentOptions}
-          value={selectedDocuments}
+          value={selectedDocument}
           onChange={handleDocumentSelectChange}
         />
       </div>
