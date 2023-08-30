@@ -36,6 +36,4 @@ function rulesAnalyze(raw, rules) {
     return raw;
 }
 
-
-
 module.exports = rulesAnalyze;
