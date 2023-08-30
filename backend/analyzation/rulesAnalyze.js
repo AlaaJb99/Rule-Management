@@ -1,20 +1,3 @@
-function countKeywords(message, ruleKeywords) {
-    message = message.toLowerCase();
-    var count = 0;
-    for (var i = 0; i < ruleKeywords.length; i++) {
-
-        const keywordRegex = new RegExp(`\\b${ruleKeywords[i].toLowerCase()}\\b`, 'i'); // Match whole word, case-insensitive
-        const matches = lowercaseLogEntry.match(keywordRegex);
-
-        if (message.includes(ruleKeywords[i].toLowerCase())) {
-            console.log(ruleKeywords[i] + " matched");
-            count++;
-        }
-
-    }
-    return count;
-}
-
 function rulesAnalyze(raw, rules) {
     console.log("rulesAnalyze function");
     //console.log(rules); works
