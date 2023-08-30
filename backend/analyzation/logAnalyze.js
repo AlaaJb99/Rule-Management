@@ -1,4 +1,5 @@
 const rulesAnalyze = require('./rulesAnalyze');
+const rankAnalyze = require('./rulesAnalyze');
 
 function logAnalyze(log, rules) {//addd the raw in the (raw)
     console.log("logAnalyze function");
@@ -10,7 +11,8 @@ function logAnalyze(log, rules) {//addd the raw in the (raw)
     }
 
     log = rulesAnalyze(log, rules);
-     //here call the rankAnalyze
+    //here call the rankAnalyze
+    log = rankAnalyze(log, rules);
 
     return log;
 }
