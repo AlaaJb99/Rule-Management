@@ -1,4 +1,4 @@
-export const ranks =
+const ranks =
     [{
         1: [
             "Success", "Transaction",
@@ -21,3 +21,5 @@ export const ranks =
             "Privacy Breach", "Data Leak", "Authentication", "Authorization", "Vulnerability", "Hardware Failure", "Component Error"
         ]
     }];//high
+
+    module.exports = ranks;

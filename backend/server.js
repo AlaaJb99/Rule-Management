@@ -7,9 +7,17 @@ var upload = multer();
 const scheduledFunctions = require('./scheduler');
 
 
+const fileAnalyze = require('./analyzation/fileAnalyze.js');
+
+
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(upload.array());
+
+const process = fileAnalyze("file_log1");
+console.log("Process = " + process);
+
+
 
 // ADD CALL to execute your function(s)
 scheduledFunctions.initScheduledJobs();
