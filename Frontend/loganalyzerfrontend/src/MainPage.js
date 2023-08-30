@@ -3,68 +3,99 @@ import Select from 'react-select';
 import './Loading.css';
 
 function MultiSelect() {
-    const options = [
-        { value: 'Error Detection', label: 'Error Detection' },
-        { value: 'Warning Identification', label: 'Warning Identification' },
-        { value: 'Authentication Issue', label: 'Authentication Issue' },
-        { value: 'Network Anomalies', label: 'Network Anomalies' },
-        { value: 'Performance Bottlenecks', label: 'Performance Bottlenecks' },
-        { value: 'Security Breach Attempt', label: 'Security Breach Attempt' },
-        { value: 'Resource Monitoring', label: 'Resource Monitoring' },
-        { value: 'Successful Transactions', label: 'Successful Transactions' },
-        { value: 'Application Events', label: 'Application Events' },
-        { value: 'Informational Logs', label: 'Informational Logs' },
-        { value: 'Unauthorized Access', label: 'Unauthorized Access' },
-        { value: 'Anomaly Detection', label: 'Anomaly Detection' },
-        { value: 'Malicious Activity', label: 'Malicious Activity' },
-        { value: 'Resource Exceedance', label: 'Resource Exceedance' },
-        { value: 'Latency Threshold', label: 'Latency Threshold' },
-        { value: 'Outages and Downtime', label: 'Outages and Downtime' },
-        { value: 'Critical Errors', label: 'Critical Errors' },
-        { value: 'Successful Transactions', label: 'Successful Transactions' },
-        { value: 'Regulatory Compliance', label: 'Regulatory Compliance' },
-        { value: 'Data Privacy', label: 'Data Privacy' },
-        { value: 'Network Connectivity', label: 'Network Connectivity' },
-        { value: 'Hardware Failure', label: 'Hardware Failure' },
-      ];
-  const [selectedOptions, setSelectedOptions] = useState([]);
+  const ruleOptions = [
+    { value: 'Error Detection', label: 'Error Detection' },
+    { value: 'Warning Identification', label: 'Warning Identification' },
+    { value: 'Authentication Issue', label: 'Authentication Issue' },
+    { value: 'Network Anomalies', label: 'Network Anomalies' },
+    { value: 'Performance Bottlenecks', label: 'Performance Bottlenecks' },
+    { value: 'Security Breach Attempt', label: 'Security Breach Attempt' },
+    { value: 'Resource Monitoring', label: 'Resource Monitoring' },
+    { value: 'Successful Transactions', label: 'Successful Transactions' },
+    { value: 'Application Events', label: 'Application Events' },
+    { value: 'Informational Logs', label: 'Informational Logs' },
+    { value: 'Unauthorized Access', label: 'Unauthorized Access' },
+    { value: 'Anomaly Detection', label: 'Anomaly Detection' },
+    { value: 'Malicious Activity', label: 'Malicious Activity' },
+    { value: 'Resource Exceedance', label: 'Resource Exceedance' },
+    { value: 'Latency Threshold', label: 'Latency Threshold' },
+    { value: 'Outages and Downtime', label: 'Outages and Downtime' },
+    { value: 'Critical Errors', label: 'Critical Errors' },
+    { value: 'Successful Transactions', label: 'Successful Transactions' },
+    { value: 'Regulatory Compliance', label: 'Regulatory Compliance' },
+    { value: 'Data Privacy', label: 'Data Privacy' },
+    { value: 'Network Connectivity', label: 'Network Connectivity' },
+    { value: 'Hardware Failure', label: 'Hardware Failure' },
+  ];
+  const documentOptions = [
+    { value: 'a', label: 'Document A' },
+    { value: 'b', label: 'Document B' },
+    { value: 'c', label: 'Document C' },
+    // Add more document options as needed
+  ];
+
+  const [selectedRules, setSelectedRules] = useState([]);
+  const [selectedDocuments, setSelectedDocuments] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  // const handleSelectChange = (selectedOptions) => {
-  //   setSelectedOptions(selectedOptions);
-    
-  //   // Get an array of selected values
-  // const selectedValues = selectedOptions.map((option) => option.value);
-    
-  //   // Call the onSelectedValues function with the selected values
-  //   onSelectedValues(selectedValues);
-  // };
+  const handleRuleSelectChange = (selectedRules) => {
+    setSelectedRules(selectedRules);
+  };
 
-  const handleSelectChange = (selectedOptions) => {
-    setSelectedOptions(selectedOptions);
+  const handleDocumentSelectChange = (selectedDocuments) => {
+    setSelectedDocuments(selectedDocuments);
   };
 
   const handleSubmit = () => {
-    setIsLoading(true); // Start loading
+    if (selectedRules.length === 0) {
+      alert('You should choose at least one rule');
+      return;
+    }
+
+    if (selectedDocuments.length === 0) {
+      alert('You should choose at least one document');
+      return;
+    }
+
+    setIsLoading(true);
+
+    const dataToSend = {
+      selectedRules: selectedRules.map((option) => option.value),
+      selectedDocuments: selectedDocuments.map((option) => option.value),
+    };
+
     setTimeout(() => {
-      console.log('Selected options:', selectedOptions);
-      setIsLoading(false); // End loading after the operation is complete
-    }, 10000);
+      console.log('Data to send to the backend:', dataToSend);
+      setIsLoading(false);
+    }, 2000);
   };
 
   const handleCancel = () => {
-    setSelectedOptions([]); // Reset selected options
+    setSelectedRules([]);
+    setSelectedDocuments([]);
   };
 
   return (
     <div>
-      <h1>Select Rules</h1>
-      <Select
-        isMulti
-        options={options}
-        value={selectedOptions}
-        onChange={handleSelectChange}
-      />
+      <h1>Select Rules and Documents</h1>
+      <div>
+        <label>Rules:</label>
+        <Select
+          isMulti
+          options={ruleOptions}
+          value={selectedRules}
+          onChange={handleRuleSelectChange}
+        />
+      </div>
+      <div>
+        <label>Documents:</label>
+        <Select
+          isMulti
+          options={documentOptions}
+          value={selectedDocuments}
+          onChange={handleDocumentSelectChange}
+        />
+      </div>
       <br />
       <button onClick={handleSubmit} disabled={isLoading}>
         {isLoading ? (
