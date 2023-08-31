@@ -1,17 +1,16 @@
 var express = require('express');
 var router = express.Router();
-
-var Log = require('../modules/logDB');
-
+const { getFiles } = require('../database_utils/file_utils');
 
 router.get('/', function (req, res) {
     // get all the Logs from the log 
-    Log.find({}, function (err, Logs) {
+    getFiles((err, collectionNames) => {
         if (err) {
-
-            return res.status(500).json({ error: "An error occurred while fetching rules." });
+            res.status(500).json({ error: 'Internal server error' });
+        } else {
+            //get all the files
+            res.json(collectionNames);
         }
-        res.json(rules); // return the rules in json formate 
     });
 });
 
