@@ -1,6 +1,5 @@
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://127.0.0.1:27017/logAnalyzer');
-const fileSchema = require('../modules/fileDB');
+const { fileSchema, connection } = require('../modules/fileDB');
 
 
 async function getLogs(log_file) {
@@ -16,5 +15,18 @@ async function getLogs(log_file) {
     }
 }
 
+/* this function is responsoable for getting all the files (collections of files) that in the database */
+function getFiles(callback) {
+    mongoose.connection.db.listCollections().toArray((err, names) => {
+        if (err) {
+            callback(err, null);
+        } else {
+            const filesNames = names.map(collection => collection.name)
+                .filter(name => name.startsWith('file_'));
+            callback(null, filesNames);
+        }
+    });
+}
 
-module.exports = { getLogs };
+
+module.exports = { getLogs, getFiles };
