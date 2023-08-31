@@ -11,11 +11,25 @@ function getRules(callback) {
     });
 }
 
+function getRulesByName(ruleNames) {
+    return new Promise((resolve, reject) => {
+        
+        Rule.find({ rule_name: { $in: ruleNames } }, (err, rules) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(rules);
+            }
+        });
+    });
+}
+
 function addRule() {
     Rule.insertMany(rulesArray);
 }
 
 module.exports = {
     getRules,
+    getRulesByName,
     addRule
 };

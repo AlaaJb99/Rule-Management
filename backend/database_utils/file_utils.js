@@ -10,9 +10,7 @@ async function getLogs(log_file) {
         return logs;
     } catch (err) {
         console.error('Error:', err);
-    } finally {
-        mongoose.connection.close();
-    }
+    } 
 }
 
 /* this function is responsoable for getting all the files (collections of files) that in the database */
@@ -27,6 +25,5 @@ function getFiles(callback) {
         }
     });
 }
-
 
 module.exports = { getLogs, getFiles };

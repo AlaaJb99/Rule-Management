@@ -15,7 +15,7 @@ app.use('/log', log);
 var rule = require('./routes/rule.js');
 app.use('/rule', rule);
 
-var log = require('./routes/analyze.js');
-app.use('/analyze', log);
+var analyze = require('./routes/analyze.js');
+app.use('/analyze', analyze);
 
 app.listen(8080);

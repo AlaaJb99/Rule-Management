@@ -1,5 +1,5 @@
 function rulesAnalyze(raw, rules) {
-    console.log("rulesAnalyze function");
+    //console.log(raw);
     //console.log(rules); works
     var messageLowerCase = raw.message.toLowerCase();
     const classificationScores = {};

@@ -1,13 +1,13 @@
 const rulesAnalyze = require('./rulesAnalyze');
-const rankAnalyze = require('./rulesAnalyze');
+const rankAnalyze = require('./rankAnalyze');
 
-function logAnalyze(log, rules) {//addd the raw in the (raw)
-    console.log("logAnalyze function");
+function logAnalyze(logEntry, rules) {//addd the raw in the (raw)
+    //console.log(logEntry);
     var log = {
         rule: null,
         rank: null,
-        message: log.info,
-        date: log.date
+        message: logEntry.info,
+        date: logEntry.date
     }
 
     log = rulesAnalyze(log, rules);

@@ -7,13 +7,14 @@ function changeLowerCase(arr) {
     return arr;
 }
 function ranksAnalyzation(raw, rules) {
+    console.log("rank analyze");
 
     var raw_rule = raw.rule;
     /// in defualt rank will be 1-low ,(just be sure about unkown rule if to put 0 for rank or 1!)
     var res_rank = 1;
     let ruleObject = null;
     for (const rule of rules) {
-        if (rule.rule === raw_rule) {
+        if (rule.rule_name === raw_rule) {
             ruleObject = rule;
             break;
         }
