@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import Select from 'react-select';
 import './Loading.css';
+import { useNavigate } from 'react-router-dom';
 
 function MultiSelect() {
   const [ruleOptions, setRuleOptions] = useState([]);
@@ -9,6 +10,10 @@ function MultiSelect() {
   const [selectedRules, setSelectedRules] = useState([]);
   const [selectedDocument, setSelectedDocument] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+
+  // useHistory to navigate to the second page
+  const navigate = useNavigate();
+  const [analyzation, setAnalyzation] = useState(null);
 
   const handleRuleSelectChange = (selectedRules) => {
     setSelectedRules(selectedRules);
@@ -19,18 +24,17 @@ function MultiSelect() {
   };
 
   //useEffect to get the log files and rules from the backend
-  useEffect(() => async function(){
+  useEffect(() => async function () {
     //GET http request to get all the avaiable rules and files
     await fetch('http://localhost:8080/rule')
       .then(response => response.json())
       .then(data => {
         setRuleOptions(data.map(rule => ({ value: rule.rule_name, label: rule.rule_name })));
       });
-     
+
     await fetch('http://localhost:8080/log')
       .then(response => response.json())
-      .then(data => setDocumentOptions(data.map(file => ({ value: file, label: file })))); 
-      console.log(ruleOptions);
+      .then(data => setDocumentOptions(data.map(file => ({ value: file, label: file }))));
   }, []);
 
   const handleSubmit = () => {
@@ -50,11 +54,27 @@ function MultiSelect() {
       selectedRules: selectedRules.map((option) => option.value),
       selectedDocument: selectedDocument.value, // Use the selected document value
     };
+    console.log(dataToSend);
 
-    setTimeout(() => {
-      console.log('Data to send to the backend:', dataToSend);
-      setIsLoading(false);
-    }, 2000);
+
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(dataToSend)
+    };
+
+    if (dataToSend) {
+      fetch('http://localhost:8080/analyze', requestOptions)
+        .then(response => response.json())
+        .then(data => {
+          setAnalyzation(data);
+          setTimeout(() => {
+            console.log('Data to send to the backend:', dataToSend);
+            setIsLoading(false);
+            navigate('/analyze', { state: { data } });
+          }, 2000);
+        });
+    }
   };
 
   const handleCancel = () => {

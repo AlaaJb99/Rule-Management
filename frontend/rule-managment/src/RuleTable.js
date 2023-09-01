@@ -5,7 +5,7 @@ function RuleTable({ rules }) {
       <thead>
         <tr>
           <th>Name</th>
-          <th>Level</th>
+          <th>Rank</th>
           <th>Date</th>
           <th>Message</th>
         </tr>
@@ -13,10 +13,10 @@ function RuleTable({ rules }) {
       <tbody>
         {rules.map((item, index) => (
           <tr key={index}>
-            <td className={item.level.toLowerCase()}>{item.rule}</td>
-            <td className={item.level.toLowerCase()}>{item.level}</td>
-            <td className={item.level.toLowerCase()}>{item.date}</td>
-            <td className={item.level.toLowerCase()}>{item.Message}</td>
+            <td className={item.rank.toLowerCase()}>{item.rule}</td>
+            <td className={item.rank.toLowerCase()}>{item.rank}</td>
+            <td className={item.rank.toLowerCase()}>{item.date}</td>
+            <td className={item.rank.toLowerCase()}>{item.Message}</td>
           </tr>
         ))}
       </tbody>
