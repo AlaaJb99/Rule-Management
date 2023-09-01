@@ -1,4 +1,6 @@
 const logAnalyze = require('./logAnalyze');
+const checkErrorsForDispatcher = require('./checkDispatcherNeed');
+
 
 function fileAnalyze(logs, rules) {
     var process = [];
@@ -32,7 +34,11 @@ function fileAnalyze(logs, rules) {
                 process.push(result);
         }
         // call the function to check if dispatcher needed
-        //console.log(process);
+        const [res_condition, abnormalErrors] = checkErrorsForDispatcher(process);
+        if(res_condition)
+        {
+            console.log("Need to send to dispatcher the :",abnormalErrors);
+        }
 
     } catch (err) {
         console.error('Error:', err);
