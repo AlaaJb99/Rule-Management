@@ -31,6 +31,7 @@ function fileAnalyze(logs, rules) {
             if (result.rule !== "Unclassified")
                 process.push(result);
         }
+        // call the function to check if dispatcher needed
         //console.log(process);
 
     } catch (err) {
