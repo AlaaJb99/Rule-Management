@@ -3,6 +3,9 @@ var app = express();
 var bodyParser = require('body-parser');
 var multer = require('multer');
 var upload = multer();
+var cors = require('cors')
+
+app.use(cors());
 
 
 app.use(bodyParser.json());
