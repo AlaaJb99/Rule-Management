@@ -1,0 +1,55 @@
+/* App.css */
+.mainP {
+  text-align: center;
+  padding: 20px;
+}
+
+h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+#sortOptions {
+  margin-top: 10px;
+  padding: 5px;
+}
+
+.App {
+  margin-top: 20px;
+  border: 1px solid #ccc;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+td {
+  vertical-align: top;
+}
+
+/* Custom Styles for Different Levels */
+td.low {
+  background-color: lightyellow;
+}
+
+td.medium {
+  background-color: rgba(239, 213, 190, 0.596);
+}
+
+td.high {
+  background-color: rgba(240, 128, 128, 0.523);
+}
