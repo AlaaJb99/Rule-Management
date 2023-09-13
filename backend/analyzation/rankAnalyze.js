@@ -7,7 +7,6 @@ function changeLowerCase(arr) {
     return arr;
 }
 function ranksAnalyzation(raw, rules) {
-    console.log("rank analyze");
 
     var raw_rule = raw.rule;
     /// in defualt rank will be 1-low ,(just be sure about unkown rule if to put 0 for rank or 1!)
@@ -20,7 +19,6 @@ function ranksAnalyzation(raw, rules) {
         }
     }
     if (ruleObject) {
-        console.log("Entered ");
         var keywords_array = ruleObject.keywords;
         var hist = [0, 0, 0];
         for (const keyword_ of keywords_array) {

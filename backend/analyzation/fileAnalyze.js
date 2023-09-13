@@ -5,7 +5,6 @@ function fileAnalyze(logs, rules) {
 
     //addRule();
 
-
     // var examples = [
     //     {
     //         user_name: "Alaa",
@@ -31,9 +30,6 @@ function fileAnalyze(logs, rules) {
             if (result.rule !== "Unclassified")
                 process.push(result);
         }
-        // call the function to check if dispatcher needed
-        //console.log(process);
-
     } catch (err) {
         console.error('Error:', err);
     }

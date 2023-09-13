@@ -16,7 +16,7 @@ function RuleTable({ rules }) {
             <td className={item.rank.toLowerCase()}>{item.rule}</td>
             <td className={item.rank.toLowerCase()}>{item.rank}</td>
             <td className={item.rank.toLowerCase()}>{item.date}</td>
-            <td className={item.rank.toLowerCase()}>{item.Message}</td>
+            <td className={item.rank.toLowerCase()}>{item.message}</td>
           </tr>
         ))}
       </tbody>
