@@ -8,6 +8,7 @@ router.post('/', function (req, res) {
     //selectedDocument
     const rules = req.body.selectedRules;
     const file = req.body.selectedDocument;
+    
     analyze(req, rules, file, (err, analyzed) => {
         if (err) {
             res.status(500).json({ error: 'Internal server error' });
