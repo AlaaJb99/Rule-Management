@@ -6,7 +6,7 @@ var fileAnalyze = require('./fileAnalyze.js');
 const checkErrorsForDispatcher = require('./checkDispatcherNeed');
 const sendToDispatcher = require('./sendToDispatcher');
 
-async function analyze(req, rules, file, callback) {
+async function analyze(user, rules, file, callback) {
     //get the file data
     const selectedRules = await getRulesByName(rules);
     //console.log(selectedRules);
@@ -39,7 +39,7 @@ async function analyze(req, rules, file, callback) {
                 console.log(res_condition);
                 if (res_condition) {
                     console.log("Need to send to dispatcher the :", abnormalErrors);
-                    sendToDispatcher(abnormalErrors, result, req);
+                    sendToDispatcher(abnormalErrors, result, user);
                 }
                 callback(null, res_analyzed);
             })
@@ -59,7 +59,7 @@ async function analyze(req, rules, file, callback) {
             console.log(res_condition);
             if (res_condition) {
                 //console.log("Need to send to dispatcher the :", abnormalErrors);
-                sendToDispatcher(abnormalErrors, file_analyzed, req);
+                sendToDispatcher(abnormalErrors, file_analyzed, user);
             }
             callback(null, resultRules);
         })

@@ -1,17 +1,14 @@
 
 var request = require('request');
 
-function sendToDispatcher(abnormalErrors, file_analyzed, req) {
-    // 
-    const clientIP = req.ip; // This will give you the IP address of the client (IoT device)
+function sendToDispatcher(abnormalErrors, file_analyzed, user) {
     const sendData = {
         errors: abnormalErrors,
         date: file_analyzed.file_date,
         file_name: file_analyzed.file_name,
         username: file_analyzed.user_name,
-        email: req.user.email,
-        phone: req.user.phone,
-        IP_IOT: clientIP
+        email: user.email,
+        phone: user.phone
     }
     var clientServerOptions = {
         uri: 'http://localhost:8080/dispatcher',
@@ -22,7 +19,7 @@ function sendToDispatcher(abnormalErrors, file_analyzed, req) {
         }
     }
     request(clientServerOptions, function (error, response) {
-       //console.log(error,response.body);
+        //console.log(error,response.body);
         return;
     });
 }
