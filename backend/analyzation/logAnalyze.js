@@ -4,6 +4,7 @@ const rankAnalyze = require('./rankAnalyze');
 function logAnalyze(logEntry, rules) {//addd the raw in the (raw)
     //console.log(logEntry);
     var log = {
+        _id: logEntry._id,
         rule: null,
         rank: null,
         message: logEntry.info,
