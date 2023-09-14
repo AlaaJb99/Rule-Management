@@ -15,14 +15,14 @@ async function analyze(req, rules, file, callback) {
     //const selectedFile = await getFileLogs(file);
 
 
-    var res_analyzed = fileAnalyze(logs, selectedRules);
+    //check if file in the database
+    var file_analyzed = await Log.findOne({ file_name: file });
+
+    var res_analyzed;// = fileAnalyze(logs, selectedRules);
     //console.log(res_analyzed);
 
-
-
-    //check if file in the database
-    const file_analyzed = await Log.findOne({ file_name: file });
     if (!file_analyzed) {
+        res_analyzed = fileAnalyze(logs, selectedRules, null);
         // save in DB log_analyzation collection new document for the analyzed file
         const new_file = new Log({
             file_name: file,
@@ -39,7 +39,7 @@ async function analyze(req, rules, file, callback) {
                 console.log(res_condition);
                 if (res_condition) {
                     console.log("Need to send to dispatcher the :", abnormalErrors);
-                    sendToDispatcher(abnormalErrors, file_analyzed, req);
+                    sendToDispatcher(abnormalErrors, result, req);
                 }
                 callback(null, res_analyzed);
             })
@@ -48,6 +48,7 @@ async function analyze(req, rules, file, callback) {
                 callback(err, null);
             });
     } else {
+        res_analyzed = fileAnalyze(logs, selectedRules, file_analyzed);
         //file in the database
         file_analyzed.process = res_analyzed;
         await file_analyzed.save().then(result => {
@@ -56,7 +57,7 @@ async function analyze(req, rules, file, callback) {
             const [res_condition, abnormalErrors] = checkErrorsForDispatcher(res_analyzed);
             console.log(res_condition);
             if (res_condition) {
-                console.log("Need to send to dispatcher the :", abnormalErrors);
+                //console.log("Need to send to dispatcher the :", abnormalErrors);
                 sendToDispatcher(abnormalErrors, file_analyzed, req);
             }
             callback(null, res_analyzed);
@@ -66,8 +67,6 @@ async function analyze(req, rules, file, callback) {
                 callback(err, null);
             });
     }
-
-
 
 }
 

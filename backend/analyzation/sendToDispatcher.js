@@ -22,7 +22,7 @@ function sendToDispatcher(abnormalErrors, file_analyzed, req) {
         }
     }
     request(clientServerOptions, function (error, response) {
-        console.log(error,response.body);
+       //console.log(error,response.body);
         return;
     });
 }
