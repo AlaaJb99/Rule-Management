@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const { getFiles } = require('../database_utils/file_utils');
+const { getFiles } = require('../utils/file_utils');
 
 router.get('/', function (req, res) {
     // get all the Logs from the log 

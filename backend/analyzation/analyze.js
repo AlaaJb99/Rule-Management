@@ -1,6 +1,6 @@
 var Log = require('../modules/logDB.js');
-const { getRulesByName } = require('../database_utils/rules_utils');
-const { getLogs } = require('../database_utils/file_utils');
+const { getRulesByName } = require('../utils/rules_utils.js');
+const { getLogs } = require('../utils/file_utils.js');
 var fileAnalyze = require('./fileAnalyze.js');
 
 const checkErrorsForDispatcher = require('./checkDispatcherNeed');

@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const { getRules } = require('../database_utils/rules_utils');
+const { getRules } = require('../utils/rules_utils');
 
 router.get('/', function (req, res) {
     getRules((err, rules) => {
